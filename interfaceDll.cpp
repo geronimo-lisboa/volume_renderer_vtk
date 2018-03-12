@@ -72,6 +72,23 @@ public:
 		renderer->ResetCamera();
 		renderWindow->Render();
 	}
+
+	void SetColorFunction(ColorTransferFunctionStruct *data){
+		ctf->Delete();
+		sof->Delete();
+		ctf = vtkColorTransferFunction::New();
+		sof = vtkPiecewiseFunction::New();
+		for (int i = 0; i < data->numColorPoints-2; i++){
+			//float _x, _v0, _v1, _v2, _v3, _midpoint, _sharpness;
+			ColorPointStruct currPt = data->points[i];
+			ColorPointStruct nextPt = data->points[i+1];
+			ctf->AddRGBSegment(currPt._x, currPt._v0, currPt._v1, currPt._v2,
+				currPt._x, currPt._v0, currPt._v1, currPt._v2);
+			sof->AddSegment(currPt._x, currPt._v3, nextPt._x, nextPt._v3);
+		}
+		prop->SetColor(ctf);
+		prop->SetScalarOpacity(sof);
+	}
 	//Renderiza
 	void Render(){
 		renderWindow->Render();
@@ -80,6 +97,10 @@ public:
 
 std::shared_ptr<VRSystem> sys = nullptr;;
 
+void _stdcall SetFuncaoDeCor(ColorTransferFunctionStruct* data){
+	sys->SetColorFunction(data);
+	sys->Render();
+}
 
 void _stdcall CreateScreenFromContext(){
 	//Criação da janela.
@@ -91,8 +112,6 @@ void _stdcall CreateScreenFromContext(){
 	reader->SetDirectoryName("C:\\meus dicoms\\Marching Man");
 	reader->Update();
 	sys->SetImage(reader);
-
-
 }
 
 void _stdcall Render(){

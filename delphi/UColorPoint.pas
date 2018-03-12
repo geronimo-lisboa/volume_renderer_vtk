@@ -5,6 +5,10 @@ uses
   Windows, Classes,StrUtils, Controls, StdCtrls, SysUtils, xmldom, XMLIntf, msxmldom, XMLDoc, UTypedefs, contnrs, Dialogs;
 
 type
+TColorRecord = record
+_x,_v0, _v1, _v2, _v3, _midpoint, _sharpness:single;
+end;
+
 TColorPoint = class
   private
     _x,_v0, _v1, _v2, _v3, _midpoint, _sharpness:single;
@@ -19,10 +23,21 @@ TColorPoint = class
     constructor Create(nColorChannel:IXMLNode; nOpacityChannel:IXMLNode);overload;
     constructor Create();overload;
     constructor Create(o:TColorPoint);overload;
+    function GetAsRecord():TColorRecord;
 end;
 TColorPointArray = array of TColorPoint;
 
 implementation
+function TColorPoint.GetAsRecord():TColorRecord;
+begin
+  result._x := X;
+  result._v0 := C0;
+  result._v1 := C1;
+  result._v2 := C2;
+  result._v3 := C3;
+  result._midpoint := Midpoint;
+  result._sharpness := Sharpness;
+end;
 
 constructor TColorPoint.create(o:TColorPoint );
 begin

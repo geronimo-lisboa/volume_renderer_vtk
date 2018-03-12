@@ -22,6 +22,15 @@ object Form1: TForm1
     TabOrder = 0
     OnClick = btnInicioClick
   end
+  object btnSwitchCor: TButton
+    Left = 80
+    Top = 0
+    Width = 75
+    Height = 25
+    Caption = 'btnSwitchCor'
+    TabOrder = 1
+    OnClick = btnSwitchCorClick
+  end
   object tmr1: TTimer
     Enabled = False
     Interval = 100

@@ -6,6 +6,11 @@ uses
   UGradientPoint, UColorPoint;
 
 type
+TColorTransferFunctionRecord = record
+  numColorPoints:integer;
+  colorPoints:array of TColorRecord;
+end;
+
 TTransferFunction = class
   private
     _currentWW, _currentWL:integer;
@@ -68,8 +73,21 @@ TTransferFunction = class
     procedure AddGradientPoint(_p:TGradientPoint; i:integer);
     procedure AddPoint(_p:TColorPoint; i:integer);
     procedure recalculateWL();
+    function GetAsRecord():TColorTransferFunctionRecord;
 end;
 implementation
+
+function TTransferFunction.GetAsRecord():TColorTransferFunctionRecord;
+var
+  i:integer;
+begin
+  result.numColorPoints := _Points.Count;
+  SetLength(result.colorPoints, result.numColorPoints);
+  for i:=0 to result.numColorPoints-1 do
+  begin
+    result.colorPoints[i] := TColorPoint(_Points.Items[i]).GetAsRecord();
+  end;                       
+end;
 
 procedure TTransferFunction.recalculateWL();
 var

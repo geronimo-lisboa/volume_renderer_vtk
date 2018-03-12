@@ -1,5 +1,6 @@
+{$SetPEFlags $20}
 program Project1;
-
+{$R 'color_transfer_functions.res' 'color_transfer_functions.rc'}
 uses
   Forms,
   Unit1 in 'Unit1.pas' {Form1},
@@ -7,7 +8,8 @@ uses
   MyOpenGlPanel in 'MyOpenGlPanel.pas',
   UColorPoint in 'UColorPoint.pas',
   UGradientPoint in 'UGradientPoint.pas',
-  UColorFunctions in 'UColorFunctions.pas';
+  UColorFunctions in 'UColorFunctions.pas',
+  USendColorToDll in 'USendColorToDll.pas';
 
 {$R *.res}
 
