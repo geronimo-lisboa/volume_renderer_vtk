@@ -15,5 +15,5 @@ CT_Bone_1500_300                RCDATA "C:/teste_volume_render/delphi/colors//CT
 CT_Cardiac                      RCDATA "C:/teste_volume_render/delphi/colors//CT-Cardiac.vvt"
 CT_Cardiac2                     RCDATA "C:/teste_volume_render/delphi/colors//CT-Cardiac2.vvt"
 CT_Cardiac3                     RCDATA "C:/teste_volume_render/delphi/colors//CT-Cardiac3.vvt"
- OSIRIX_HI_CONTRAST		RCDATA "C:/teste_volume_render/delphi/colors//OSIRIX_HI_CONTRAST.vvt"
+OSIRIX_HI_CONTRAST		RCDATA "C:/teste_volume_render/delphi/colors//OSIRIX_HI_CONTRAST.vvt"
 
