@@ -15,7 +15,6 @@ type
   private
     handleDaDll:cardinal;
     OutputPanel : TCustomPanel;
-    CreateScreen : procedure(handle:HWND);stdcall;
     CreateScreenFromContext : procedure();stdcall;
     Render: procedure();stdcall;
   public
@@ -36,7 +35,6 @@ begin
   //Carrega dll
   handleDaDll := LoadLibrary('C:\teste_volume_render\build\Debug\teste_vr.dll');
   //Carrega as fn
-  CreateScreen := GetProcAddress(handleDaDll, '_CreateScreen@4');
   CreateScreenFromContext := GetProcAddress(handleDaDll, '_CreateScreenFromContext@0');
   Render := GetProcAddress(handleDaDll, '_Render@0');
   //Criação do panel
@@ -50,7 +48,6 @@ begin
   self.Refresh();
   self.Paint();
   //Testa
-  //CreateScreen(panel1.handle);
   glPanel.MakeCurrent();
   CreateScreenFromContext();
 
